@@ -55,6 +55,10 @@ parser.add_argument('--plan-message', dest='plan_message', action='store',
                     help="What message to use during planning",
 )                   
 
+# Disable TTS
+parser.add_argument('--disable-tts', dest='disable_tts', action='store_true', default=False,
+                    help="Disable TTS")
+
 DEFAULT_PROMPT="floating hair, portrait, ((loli)), ((one girl)), cute face, hidden hands, asymmetrical bangs, beautiful detailed eyes, eye shadow, hair ornament, ribbons, bowties, buttons, pleated skirt, (((masterpiece))), ((best quality)), colorful|((part of the head)), ((((mutated hands and fingers)))), deformed, blurry, bad anatomy, disfigured, poorly drawn face, mutation, mutated, extra limb, ugly, poorly drawn hands, missing limb, blurry, floating limbs, disconnected limbs, malformed hands, blur, out of focus, long neck, long body, Octane renderer, lowres, bad anatomy, bad hands, text"
 DEFAULT_API_BASE = os.environ.get("DEFAULT_API_BASE", "http://api:8080")
 # TTS api base
@@ -413,7 +417,8 @@ if __name__ == "__main__":
             postprocess=args.postprocess,
             subtaskContext=args.subtaskContext,
             )
-        localagi.tts_play(conversation_history[-1]["content"])
+        if not args.disable_tts:
+            localagi.tts_play(conversation_history[-1]["content"])
 
     if not args.prompt or args.interactive:
         # TODO: process functions also considering the conversation history? conversation history + input
@@ -431,4 +436,5 @@ if __name__ == "__main__":
                 postprocess=args.postprocess,
                 subtaskContext=args.subtaskContext,
                 )
-            localagi.tts_play(conversation_history[-1]["content"])
+            if not args.disable_tts:
+                localagi.tts_play(conversation_history[-1]["content"])

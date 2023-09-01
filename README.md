@@ -100,6 +100,7 @@ localagi has several options in the CLI to tweak the experience:
 - `--search-results` is the number of search results to use.
 - `--plan-message` is the message to use during planning. You can override the message for example to force a plan to have a different message.
 - `--tts-api-base` is the TTS API base. Defaults to `http://api:8080`.
+- '--disable-tts' will disable TTS. Useful if you want to run it in an environment without audio output.
 - `--localai-api-base` is the LocalAI API base. Defaults to `http://api:8080`.
 - `--images-api-base` is the Images API base. Defaults to `http://api:8080`.
 - `--embeddings-api-base` is the Embeddings API base. Defaults to `http://api:8080`.
