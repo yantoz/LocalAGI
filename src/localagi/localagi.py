@@ -26,6 +26,7 @@ class LocalAGI:
                  stablediffusion_model=STABLEDIFFUSION_MODEL, 
                  functions_model=FUNCTIONS_MODEL, 
                  llm_model=LLM_MODEL,
+                 timeout=1200,
                  tts_player="aplay",
                  action_callback=None,
                  reasoning_callback=None,
@@ -35,6 +36,7 @@ class LocalAGI:
         self.plan_message = plan_message
         self.force_action = force_action
         self.tts_player = tts_player
+        self.timeout = timeout
         self.action_callback = action_callback
         self.reasoning_callback = reasoning_callback
         self.agent_actions[plan_action] = {
@@ -160,7 +162,7 @@ Function call: """
             #model="gpt-3.5-turbo",
             model=self.functions_model,
             messages=messages,
-            request_timeout=1200,
+            request_timeout=self.timeout,
             functions=functions,
             api_base=self.api_base+"/v1",
             stop=None,
@@ -251,7 +253,7 @@ Function call: """
             model=self.functions_model,
             messages=messages,
             functions=functions,
-            request_timeout=1200,
+            request_timeout=self.timeout,
             stop=None,
             api_base=self.api_base+"/v1",
             temperature=0.1,
@@ -291,7 +293,7 @@ Function call: """
             messages=responses,
             stop=None,
             api_base=self.api_base+"/v1",
-            request_timeout=1200,
+            request_timeout=self.timeout,
             temperature=0.1,
         )
         responses.append(
@@ -336,7 +338,7 @@ Function call: """
             messages=messages,
             stop=None,
             api_base=self.api_base+"/v1",
-            request_timeout=1200,
+            request_timeout=self.timeout,
             temperature=0.1,
         )
         return  response.choices[0].message["content"]
@@ -361,7 +363,7 @@ Function call: """
             api_base=self.api_base+"/v1",
             stop=None,
             temperature=0.1,
-            request_timeout=1200,
+            request_timeout=self.timeout,
         )
         result = response["choices"][0]["message"]["content"]
         logger.info("==> Processed: {string}", string=result)

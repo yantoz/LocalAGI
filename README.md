@@ -110,6 +110,7 @@ localagi has several options in the CLI to tweak the experience:
 - `--tts-model` is the TTS model to use. Defaults to `en-us-kathleen-low.onnx`.
 - `--stablediffusion-model` is the Stable Diffusion model to use. Defaults to `stablediffusion`.
 - `--stablediffusion-prompt` is the Stable Diffusion prompt to use. Defaults to `DEFAULT_PROMPT`.
+- '--timeout' to set API timeout in seconds. Defaults to 1200.
 - `--force-action` will force a specific action.
 - `--debug` will enable debug mode.
 
