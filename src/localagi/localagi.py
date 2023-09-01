@@ -26,6 +26,7 @@ class LocalAGI:
                  stablediffusion_model=STABLEDIFFUSION_MODEL, 
                  functions_model=FUNCTIONS_MODEL, 
                  llm_model=LLM_MODEL,
+                 embeddings=None,
                  timeout=1200,
                  tts_player="aplay",
                  action_callback=None,
@@ -36,6 +37,7 @@ class LocalAGI:
         self.plan_message = plan_message
         self.force_action = force_action
         self.tts_player = tts_player
+        self.embeddings = embeddings
         self.timeout = timeout
         self.action_callback = action_callback
         self.reasoning_callback = reasoning_callback

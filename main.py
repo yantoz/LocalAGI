@@ -381,6 +381,7 @@ if __name__ == "__main__":
         api_base=LOCALAI_API_BASE,
         stablediffusion_api_base=IMAGE_API_BASE,
         stablediffusion_model=STABLEDIFFUSION_MODEL,
+        embeddings=embeddings,
         timeout=args.timeout,
         force_action=args.force_action,
         plan_message=args.plan_message,
